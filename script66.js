@@ -74,33 +74,13 @@ function renderTaskLists() {
     updateChart();
 }
 
-
-//リスト配列の中身を次の段階に移動させる
-function moveTaskElement(list, task) {
-    //li要素を新生成
-    const listItem = document.createElement('li');
-    //中身を書き込む
-    listItem.innerHTML = `
-        ${task.name} - ${task.priority} <br> ${task.when} @ ${task.where}
-        ${nextList ? `<button class="move-btn" onclick="moveTask('${task.name}', '${nextList}')">Move to ${nextList}</button>` : ''}
-        <button class="delete-btn" onclick="removeTask('${task.name}')">Delete</button>
-    `;
-
-}
-
-
-
-
-
-
-
 function addTask(list,task){
     //li要素を新生成
     const listItem = document.createElement('li');
     //中身を書き込む
     listItem.innerHTML = `
         ${task.name} - ${task.priority} <br> ${task.when} @ ${task.where}
-        ${nextList ? `<button class="move-btn" onclick="moveTask('${task.name}', '${nextList}')">Move to ${nextList}</button>` : ''}
+        ${list ? `<button class="move-btn" onclick="moveTask('${task.name}', '${list}')">Move to nextStage</button>` : ''}
         <button class="delete-btn" onclick="removeTask('${task.name}')">Delete</button>
     `;
     //リストの末尾に追加
@@ -138,13 +118,13 @@ taskForm.addEventListener('submit', event => {
 });
 
 // Move task between columns
-function moveTask(taskName, targetList) {//task.name ,nextList
+function moveTask(taskName, targetList) {//task.name ,taskList
     let task = taskLists.todo.find(t => t.name === taskName) || taskLists.doing.find(t => t.name === taskName);
 
-    if (targetList === 'doing') {
+    if (targetList === 'todo') {
         taskLists.todo = taskLists.todo.filter(t => t.name !== taskName);
         taskLists.doing.push(task);
-    } else if (targetList === 'done') {
+    } else if (targetList === 'doing') {
         taskLists.doing = taskLists.doing.filter(t => t.name !== taskName);
         taskLists.done.push(task);
     }
