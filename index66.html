@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pro ToDoリストアプリ</title>
+    <link rel="stylesheet" href="https://unpkg.com/destyle.css@1.0.5/destyle.css">
+    <link rel="stylesheet" href="style66.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1><i class="fas fa-tasks"></i> Pro ToDoリストアプリ</h1><!--iクラスはなんか要るっぽいので外さないように-->
+        
+        <!-- Live Date and Time -->
+        <div id="currentDateTime"></div>
+        
+        <!-- Board with ToDo, Doing, Done -->
+        <div class="board">
+            <div class="column todo">
+                <h2>ToDo</h2>
+                <ul id="list-todo"></ul>
+            </div>
+            <div class="column doing">
+                <h2>Doing</h2>
+                <ul id="list-doing"></ul>
+            </div>
+            <div class="column done">
+                <h2>Done</h2>
+                <ul id="list-done"></ul>
+            </div>
+        </div>
+
+        <!-- Progress Chart -->
+        <div class="progress-chart">
+            <canvas id="progress-chart" width="300" height="300"></canvas>
+        </div>
+        
+
+
+        <!-- Task Input Section -->
+        <form action="" method="get" class="input-container">
+            <div class="input-container">
+                <input type="text" id="taskInput" placeholder="✏️ 新しいタスクを入力" autocomplete="off">
+                <input type="text" id="taskLabel" placeholder="🏷️ ラベル (例: 仕事, 個人)">
+                <input type="text" id="taskLocation" placeholder="📍 場所 (例: 住所)">
+                <textarea id="taskDescription" placeholder="📝 詳細説明"></textarea>
+                <label>🔰 優先度: 
+                    <select id="taskPriority">
+                        <option value="low">🔵 低</option>
+                        <option value="medium">🟠 中</option>
+                        <option value="high">🔴 高</option>
+                    </select>
+                </label>
+                <input type="datetime-local" id="taskTime">
+                <label>🔔 リマインダー時間:</label>
+                <input type="datetime-local" id="reminderTime">
+                <br>
+                <button id="addTaskBtn">✨ 追加</button>
+            </div>
+        </form>
+
+
+        <!-- Calendar and Search Section -->
+        <div class="calendar-container">
+            <input type="text" id="searchInput" placeholder="🔍 タスク検索">
+            <button id="searchBtn">検索</button>
+            <div id="calendar"></div>
+        </div>
+        
+        <!-- Activity Log Section -->
+        <h2><i class="fas fa-history"></i> アクティビティログ</h2>
+        <div id="activityLogContainer">
+            <ul id="activityLog"></ul>
+        </div>
+    </div>
+
+    <audio id="clapSound" src="https://www.soundjay.com/button/sounds/applause-1.mp3" preload="auto"></audio>
+    
+    <script src="script66.js"></script>
+</body>
+</html>

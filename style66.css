@@ -1,0 +1,247 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f0f2f5;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    height: 100vh;
+    background: linear-gradient(135deg, #ece9e6, #ffffff);
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px; /* Wider max width for larger screens */
+    margin: auto;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    border-radius: 12px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Space between sections */
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+    font-size: 2.5rem; /* Larger title font */
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+}
+
+#currentDateTime {
+    text-align: center;
+    font-size: 1.5rem;
+    color: #666;
+}
+
+.board {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px;
+}
+
+
+.progress-chart {
+    width: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+.input-container {
+    display: flex;
+    flex-wrap: wrap; /* Allow wrapping to fit on smaller screens */
+    gap: 10px; /* Space between inputs */
+}
+
+
+
+
+
+input[type="text"], textarea, input[type="datetime-local"], select {
+    flex: 1; /* Make inputs flexible */
+    min-width: 200px; /* Minimum width for inputs */
+    padding: 15px;
+    font-size: 16px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-family: 'Poppins', sans-serif;
+    transition: border 0.3s;
+}
+
+input[type="text"]:focus, textarea:focus, input[type="datetime-local"]:focus, select:focus {
+    border-color: #3498db;
+    outline: none;
+}
+
+.pill-reminder {
+    display: flex;
+    align-items: center;
+    gap: 5px; /* Space between checkbox and label */
+}
+
+.pill-reminder i {
+    color: #3498db; /* Color for the pill icon */
+}
+
+button {    /* default???? */
+    padding: 12px;
+    font-size: 18px;
+    border: none;
+    background-color: #3498db;
+    color: #fff;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+button:hover {
+    background-color: #2980b9;
+    box-shadow: 0 4px 12px rgba(52, 152, 219, 0.5);
+}
+
+button.edit-btn, button.delete-btn {
+    padding: 10px;
+    font-size: 14px;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+button.edit-btn {
+    background-color: #27ae60;
+    color: white;
+}
+
+button.edit-btn:hover {
+    background-color: #2ecc71;
+}
+
+button.delete-btn {
+    background-color: #e74c3c;
+    color: white;
+}
+
+button.delete-btn:hover {
+    background-color: #c0392b;
+}
+
+#addTaskBtn {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #5bc0de;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#addTaskBtn:hover {
+    background-color: #4677da;
+}
+
+
+
+
+.chart-container {
+    margin-top: 20px;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f9f9f9;
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 10px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+}
+
+li.completed {
+    text-decoration: line-through;
+    color: #888;
+}
+
+li.completed i {
+    color: #27ae60;
+}
+
+li:hover {
+    transform: scale(1.02);
+}
+
+
+.column {
+    width: 30%;
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+
+
+.todo {
+    background-color: #ffcccc;
+}
+
+.doing {
+    background-color: #ccffcc;
+}
+
+.done {
+    background-color: #cceeff;
+}
+
+
+
+
+
+#activityLogContainer {
+    background-color: #f1f1f1;
+    border-radius: 10px;
+    padding: 15px;
+}
+
+.chart-container {
+    margin-top: 30px;
+    width: 100%;
+}
+
+.calendar-container {
+    margin-top: 30px;
+    text-align: center;
+}
+
+.calendar-container input {
+    padding: 10px;
+    font-size: 16px;
+    margin-right: 10px;
+    width: auto;
+}
+
+h2 {
+    margin-top: 20px;
+    font-size: 1.5rem;
+    text-align: center;
+}
