@@ -12,8 +12,6 @@ function updateDateTime() {
     });
 }
 
-
-
 let taskLists = {
     todo: [],
     doing: [],
@@ -36,8 +34,7 @@ let progressChart = new Chart(ctx, {
     data: {
         labels: ['完了タスク','作業中タスク', '未完了タスク'],
         datasets: [{
-            data: [3, 1, 2],
-            //data: [doneCount, doingCount, todoCount],
+            data: [3, 1, 2],//デフォルト
             backgroundColor: ['#00bfff', '#00ff7f', '#ff6347']
         }]
     },
@@ -49,32 +46,29 @@ let progressChart = new Chart(ctx, {
 
 // Function to update the chart
 function updateChart() {
-    const ctx = document.getElementById('progress-chart').getContext('2d');
-
+    //タスク表の子要素の長さ(数)を取得
     let todoCount = listTodo.children.length;
     let doingCount = listDoing.children.length;
     let doneCount = listDone.children.length;
 
-    progressChart.data.datasets[0].data = [todoCount, doingCount, doneCount];
+    //円グラフの中身に数を代入
+    progressChart.data.datasets[0].data = [doneCount, doingCount, todoCount];
     progressChart.update();
 }
 
-// Function to render taskLists in the lists タスクステータスをリストに表示する関数
+// Function to render taskLists in the lists　タスクを表示
 function renderTaskLists() {
+    //taskListsに入った情報を
 
-    /*listTodo.innerHTML = '';//html.list-todoの子要素を全消し
-    listDoing.innerHTML = '';
-    listDone.innerHTML = '';*/
 
-    //それぞれの形にtaskを生成する。
-    taskLists.todo.forEach(task => moveTaskElement(listTodo, task, 'doing'));
-    taskLists.doing.forEach(task => moveTaskElement(listDoing, task,'done'));
-    taskLists.done.forEach(task => moveTaskElement(listDone, task));
 
+    //グラフも更新しとく
     updateChart();
 }
 
-function addTask(list,task){
+
+//追加機能 listの末尾に追加するタスクが入る
+function addTask(list,task){//taskLists.todo,task
     //li要素を新生成
     const listItem = document.createElement('li');
     //中身を書き込む
@@ -90,31 +84,26 @@ function addTask(list,task){
 
 
 
-// 新しいタスクを追加する
+// 新しいタスクを追加するイベント
 taskForm.addEventListener('submit', event => {
     //このイベントが明示的に処理されない場合に、その既定のアクションを通常どおりに行うべきではないことを伝える
     event.preventDefault();
 
-    
-
    //タスクの各要素の値をそれぞれ代入する
     let task = {
-        name: document.getElementById('taskInput').value,
+        name: document.getElementById('taskInput').value.trim(),
         priority: document.getElementById('taskPriority').value,
         when: document.getElementById('taskTime').value,
         where: document.getElementById('taskLocation').value,
         label: document.getElementById('taskLabel').value
     };
 
-    /*新しい要素を配列の末尾に追加し、配列の新しい長さを返します。param items - 配列に追加する新しい要素。
-    taskLists.todo.push(task);*/
     addTask(taskLists.todo,task);
     renderTaskLists();
     logActivity(`Added task: ${task.name}`);
 
-    modal.style.display = 'none';
+    //modal.style.display = 'none';
     taskForm.reset();
-    updateChart();
 });
 
 // Move task between columns
@@ -152,5 +141,5 @@ function logActivity(action) {
     activityLogElement.appendChild(logElement);
 }
 
-// Initial render
+// Initial render初期表示
 renderTaskLists();
