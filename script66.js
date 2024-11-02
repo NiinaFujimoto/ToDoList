@@ -72,10 +72,12 @@ function addTask(list,task){//taskLists.todo,task
     //li要素を新生成
     const listItem = document.createElement('li');
     //中身を書き込む
-    listItem.innerHTML = `
-        ${task.name} - ${task.priority} <br> ${task.when} @ ${task.where}
-        ${list ? `<button class="move-btn" onclick="moveTask('${task.name}', '${list}')">Move to nextStage</button>` : ''}
-        <button class="delete-btn" onclick="removeTask('${task.name}')">Delete</button>
+    listItem.innerHTML = 
+        `${task.name} - ${task.label} - ${task.priority} 
+        <br> 
+        ${task.deadline}
+        <br>
+        ${task.note} @ ${task.where}
     `;
     //リストの末尾に追加
     list.appendChild(listItem);
@@ -83,6 +85,7 @@ function addTask(list,task){//taskLists.todo,task
 
 
 
+const taskForm = document.getElementById('task-form');
 
 // 新しいタスクを追加するイベント
 taskForm.addEventListener('submit', event => {
@@ -93,13 +96,16 @@ taskForm.addEventListener('submit', event => {
     let task = {
         name: document.getElementById('taskInput').value.trim(),
         priority: document.getElementById('taskPriority').value,
-        when: document.getElementById('taskTime').value,
+        deadline: document.getElementById('taskTime').value,
         where: document.getElementById('taskLocation').value,
-        label: document.getElementById('taskLabel').value
+        label: document.getElementById('taskLabel').value,
+        note: document.getElementById('taskDescription').value
     };
 
-    addTask(taskLists.todo,task);
-    renderTaskLists();
+    if(task.name) {
+        addTask(taskLists.todo,task);
+    }
+
     logActivity(`Added task: ${task.name}`);
 
     //modal.style.display = 'none';
