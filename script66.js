@@ -12,11 +12,11 @@ function updateDateTime() {
     });
 }
 
-let taskLists = {
+/*let taskLists = {
     todo: [],
     doing: [],
     done: []
-};
+};*/
 let activityLog = [];
 
 
@@ -54,9 +54,9 @@ function updateChart() {
     //円グラフの中身に数を代入
     progressChart.data.datasets[0].data = [doneCount, doingCount, todoCount];
     progressChart.update();
-}
+}*/
 
-// Function to render taskLists in the lists　タスクを表示
+/* Function to render taskLists in the lists　タスクを表示
 function renderTaskLists() {
     //taskListsに入った情報を
 
@@ -65,10 +65,11 @@ function renderTaskLists() {
     //グラフも更新しとく
     updateChart();
 }
+*/
 
 
 //追加機能 listの末尾に追加するタスクが入る
-function addTask(list,task){//taskLists.todo,task
+/*function addTask(list,task){//taskLists.todo,task
     //li要素を新生成
     const listItem = document.createElement('li');
     //中身を書き込む
@@ -81,20 +82,14 @@ function addTask(list,task){//taskLists.todo,task
     `;
     //リストの末尾に追加
     list.appendChild(listItem);
-}
+}*/
 
-
-
-const taskForm = document.getElementById('task-form');
-
-// 新しいタスクを追加するイベント
-taskForm.addEventListener('submit', event => {
-    //このイベントが明示的に処理されない場合に、その既定のアクションを通常どおりに行うべきではないことを伝える
-    event.preventDefault();
-
-   //タスクの各要素の値をそれぞれ代入する
-    let task = {
-        name: document.getElementById('taskInput').value.trim(),
+//ユーザーが入力したタスクをリストに追加し、入力フィールドをクリアする関数
+function addTask() {
+    // html.id => js.element
+    const taskInput = document.getElementById("taskInput");
+    let property = {
+        name: taskInput.value.trim(),
         priority: document.getElementById('taskPriority').value,
         deadline: document.getElementById('taskTime').value,
         where: document.getElementById('taskLocation').value,
@@ -102,18 +97,108 @@ taskForm.addEventListener('submit', event => {
         note: document.getElementById('taskDescription').value
     };
 
-    if(task.name) {
-        addTask(taskLists.todo,task);
+    // 
+    if (property.name !== "") {  //空じゃない場合
+        const li = document.createElement("li");//liを作る
+
+        // spanを作って、中身を設定
+        const span = document.createElement("span");
+        span.textContent ="名前:" + property.name
+                          +"\n期限" + property.deadline
+                          +"\nラベル" + property.label
+                          +"\n詳細" + property.note
+                          +"\n優先度" + property.priority
+                          +"\n場所" + property.where
+                          ;
+        // spanをクリックすると、タスクの完了状態が切り替わる
+        span.addEventListener("click", () => {
+            span.parentNode.classList.toggle("completed");
+            saveTasks();  // タスクの状態を保存
+        });
+
+
+        // 削除ボタンを作成し、クリックするとタスクを削除するイベントリスナーを追加
+        const deleteBtn = document.createElement("button");
+        deleteBtn.textContent = "削除";
+        deleteBtn.classList.add("delete-btn");
+        deleteBtn.addEventListener("click", () => {
+            li.remove();    //liの中身消す
+            saveTasks();    //タスクの状態を保存
+        });
+
+        // li要素にspanと削除ボタンを追加し、それをlisttodoに追加
+        li.appendChild(span);
+        li.appendChild(deleteBtn);
+        listTodo.appendChild(li);
+
+        // 入力フィールドをクリアし、フォーカスを戻す
+        taskInput.value = "";
+        taskInput.focus();
+
+        saveTasks();  // タスクの状態を保存
+
+        logActivity(`Added task: ${property.name}`);
+    }
+}
+
+// 現在のタスクリストをローカルストレージに保存する関数
+function saveTasks() {
+    const tasks = [];
+    // すべてのli要素を取得し、タスクのテキストと完了状態を配列に保存
+    document.querySelectorAll("#taskList li").forEach(li => {
+        tasks.push({
+            text: li.querySelector("span").textContent,
+            completed: li.classList.contains("completed")
+        });
+    });
+    // タスクをJSON文字列に変換し、ローカルストレージに保存
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+    logActivity(`Saved task`);
+
+}
+// ローカルストレージからタスクを読み込み、表示する関数
+function loadTasks() {
+    // ローカルストレージからタスクを取得し、オブジェクトに変換
+    const tasks = JSON.parse(localStorage.getItem("tasks"));
+    if (tasks) {
+        tasks.forEach(task => {
+            // 各タスクをli要素として作成し、タスクリストに追加
+            const li = document.createElement("li");
+            const span = document.createElement("span");
+            span.textContent = task.text;
+            // タスクが完了している場合、クラスを追加
+            if (task.completed) {
+                li.classList.add("completed");
+            }
+            // タスクの完了状態を切り替えるイベントリスナーを追加
+            span.addEventListener("click", () => {
+                span.parentNode.classList.toggle("completed");
+                saveTasks();  // タスクの状態を保存
+            });
+
+            // 削除ボタンを作成し、タスクを削除するイベントリスナーを追加
+            const deleteBtn = document.createElement("button");
+            deleteBtn.textContent = "削除";
+            deleteBtn.classList.add("delete-btn");
+            deleteBtn.addEventListener("click", () => {
+                li.remove();
+                saveTasks();  // タスクの状態を保存
+            });
+
+            // li要素にspanと削除ボタンを追加し、それをtaskListに追加
+            li.appendChild(span);
+            li.appendChild(editBtn);
+            li.appendChild(deleteBtn);
+            document.getElementById("taskList").appendChild(li);
+        });
     }
 
-    logActivity(`Added task: ${task.name}`);
+    logActivity(`Loaded task`);
+}
 
-    //modal.style.display = 'none';
-    taskForm.reset();
-});
 
 // Move task between columns
-function moveTask(taskName, targetList) {//task.name ,taskList
+function moveTask(taskName, targetList) {//property.name ,taskList
     let task = taskLists.todo.find(t => t.name === taskName) || taskLists.doing.find(t => t.name === taskName);
 
     if (targetList === 'todo') {
@@ -124,18 +209,22 @@ function moveTask(taskName, targetList) {//task.name ,taskList
         taskLists.done.push(task);
     }
 
-    renderTaskLists();
     logActivity(`Moved task: ${taskName} to ${targetList}`);
 }
 
-// Remove task
+/* Remove task
 function removeTask(taskName) {
     taskLists.todo = taskLists.todo.filter(t => t.name !== taskName);
     taskLists.doing = taskLists.doing.filter(t => t.name !== taskName);
     taskLists.done = taskLists.done.filter(t => t.name !== taskName);
-    renderTaskLists();
     logActivity(`Deleted task: ${taskName}`);
-}
+}*/
+
+
+
+
+
+
 
 // Activity log function
 function logActivity(action) {
@@ -147,5 +236,7 @@ function logActivity(action) {
     activityLogElement.appendChild(logElement);
 }
 
-// Initial render初期表示
-renderTaskLists();
+// ページの読み込みが完了したときにタスクを読み込むイベントリスナーを設定
+document.addEventListener("DOMContentLoaded", () => {
+    loadTasks();
+});

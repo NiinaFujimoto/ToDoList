@@ -39,7 +39,7 @@
 
 
         <!-- Task Input Section -->
-        <form action="" method="get" id="task-form">
+        <form >
             <div class="input-container">
                 <input type="text" id="taskInput" placeholder="✏️ 新しいタスクを入力" autocomplete="off">
                 <input type="text" id="taskLabel" placeholder="🏷️ ラベル (例: 仕事, 個人)">
@@ -56,7 +56,7 @@
                 <label>🔔 リマインダー時間:</label>
                 <input type="datetime-local" id="reminderTime">
                 <br>
-                <button id="addTaskBtn">✨ 追加</button>
+                <button id="addTaskBtn" onclick="addTask()">✨ 追加</button>
             </div>
         </form>
 
