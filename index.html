@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title  >有言実行ToDo</title>
+    <link rel="stylesheet" href="https://unpkg.com/destyle.css@1.0.5/destyle.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="page-header wrapper">
+        <h1 class="title">有言実行ToDoリスト</h1>
+        <nav>
+            <ul class="main-nav">
+                <li><a href="index.html">ホーム</a></li>
+                <li><a href="#adding">タスク追加</a></li>
+                <li><a href="#lists">リスト表示</a></li>
+                <li><a href="#reports">タスク完了報告</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <div class="item"><a href="#adding">タスク追加</a></div>
+        <div class="item"><a href="#lists">リストの確認</a></div>
+        <div class="item"><a href="#completes">完了したタスク</a></div>
+    </div>
+
+
+    <br><br><br><br><br>
+
+
+
+    <div id="#adding">
+    <!-- Task Input Section -->
+        <form>
+            <div class="input-container">
+                <p>新しいタスクを追加しましょう：</p>
+                <div class="text-input">
+                    <label>✏️ タスクの名前:</label>
+                    <input type="text" id="taskInput" placeholder="旅行の準備" autocomplete="off">
+                    <br>
+                    <label>📝 詳細説明:</label>
+                    <textarea id="taskDescription" placeholder="現金、モバイルバッテリー、着替え、etc..."></textarea>
+                    <br>
+                    <label>🕘 締め切り:</label>
+                    <input type="datetime-local" id="taskTime">
+                    <br>
+                    <label>🔔 リマインダー時間:</label>
+                    <input type="datetime-local" id="reminderTime">
+                </div>
+                <br>
+
+                <div class="voice-recognize">
+                    <img src="/img/microphone_mark.png" alt="マイク">
+                    <textarea id="voice-input" placeholder="入力された音声が表示されます"></textarea>
+                </div>
+                <br>
+                <button id="addTaskBtn" onclick="addTask()">✨ 追加</button>
+            </div>
+        </form>
+    </div>
+
+    <br><br><br><br><br>
+
+
+    <!-- Board with ToDo, Doing, Done -->
+    <div id="#lists">
+        <div class="list-container">
+            <p>追加されたリストは、以下に表示されます：</p>
+
+            <ul class="list-items">
+                <li>
+                    タスクタスク:詳細説明詳細説明
+                    <br>
+                    期限は2024年12月6日です
+                    <br>
+                    <button class="deleteTaskBtn" onclick="">完了報告！</button>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+
+    <br><br><br><br><br>
+
+    <div id="#completes">
+        <div class="complete-container">
+            <p>タスクが完了したら、報告しましょう：</p>
+            <ul class="complete-items">
+                <li>
+                    タスクタスク:詳細説明詳細説明
+                    <br>
+                    報告したのは2024年12月6日です
+                    <br>
+                    <button class="deleteTaskBtn" onclick="">削除する</button>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+
+    <script src="script.js"></script>
+</body>
+</html>
