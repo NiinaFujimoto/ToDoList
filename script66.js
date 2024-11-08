@@ -12,11 +12,6 @@ function updateDateTime() {
     });
 }
 
-/*let taskLists = {
-    todo: [],
-    doing: [],
-    done: []
-};*/
 let activityLog = [];
 
 
@@ -28,23 +23,57 @@ const listDone = document.getElementById('list-done');
 
 
 //Create Chart
-const ctx = document.getElementById('progress-chart').getContext('2d');
-let progressChart = new Chart(ctx, {
-    type: 'doughnut',
-    data: {
-        labels: ['完了タスク','作業中タスク', '未完了タスク'],
-        datasets: [{
-            data: [3, 1, 2],//デフォルト
-            backgroundColor: ['#00bfff', '#00ff7f', '#ff6347']
-        }]
-    },
-    options: {
-        responsive: true,
-        maintainAspectRatio: false
-    }
-});
 
-// Function to update the chart
+var ListData = [3,1,2]; // グラフデータ（描画するデータ）
+// ページ読み込み時にグラフを描画
+getData(); // グラフデータに値を格納
+drawChart(); // グラフ描画処理を呼び出す
+// ボタンをクリックしたら、グラフを再描画
+document.getElementById('addTaskBtn').onclick = function() {
+  // すでにグラフ（インスタンス）が生成されている場合は、グラフを破棄する
+  if (myChart) {
+    myChart.destroy();
+  }
+
+  getData(); // グラフデータに値を格納
+  drawChart(); // グラフを再描画
+
+  console.log("drawed");
+}
+
+// グラフデータをyobu
+function getData() {
+  ListData = []; // 配列を初期化
+  let todoCount = listTodo.children.length;
+  let doingCount= listDoing.children.length;
+  let  doneCount=  listDone.children.length;
+  ListData= [doneCount, doingCount, todoCount];
+
+  console.log(ListData);
+}
+
+function drawChart() {
+    var ctx = document.getElementById('progress-chart').getContext('2d');
+    
+    window.myChart = new Chart(ctx, { // インスタンスをグローバル変数で生成
+        type: 'doughnut',
+        data: {
+            labels: ['完了タスク','作業中タスク', '未完了タスク'],
+            datasets: [{
+                data: ListData, // グラフデータ
+                backgroundColor: ['#00bfff', '#00ff7f', '#ff6347']
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+        }
+    });
+  }
+
+
+  
+/* Function to update the chart
 function updateChart() {
     //タスク表の子要素の長さ(数)を取得
     let todoCount = listTodo.children.length;
@@ -56,9 +85,9 @@ function updateChart() {
     progressChart.update();
 }*/
 
-/* Function to render taskLists in the lists　タスクを表示
-function renderTaskLists() {
-    //taskListsに入った情報を
+/* Function to render list-todos in the lists　タスクを表示
+function renderlist-todos() {
+    //list-todosに入った情報を
 
 
 
@@ -69,7 +98,7 @@ function renderTaskLists() {
 
 
 //追加機能 listの末尾に追加するタスクが入る
-/*function addTask(list,task){//taskLists.todo,task
+/*function addTask(list,task){//list-todos.todo,task
     //li要素を新生成
     const listItem = document.createElement('li');
     //中身を書き込む
@@ -145,7 +174,7 @@ function addTask() {
 function saveTasks() {
     const tasks = [];
     // すべてのli要素を取得し、タスクのテキストと完了状態を配列に保存
-    document.querySelectorAll("#taskList li").forEach(li => {
+    document.querySelectorAll("#list-todo li").forEach(li => {
         tasks.push({
             text: li.querySelector("span").textContent,
             completed: li.classList.contains("completed")
@@ -185,11 +214,11 @@ function loadTasks() {
                 saveTasks();  // タスクの状態を保存
             });
 
-            // li要素にspanと削除ボタンを追加し、それをtaskListに追加
+            // li要素にspanと削除ボタンを追加し、それをlist-todoに追加
             li.appendChild(span);
-            li.appendChild(editBtn);
+            //li.appendChild(editBtn);
             li.appendChild(deleteBtn);
-            document.getElementById("taskList").appendChild(li);
+            document.getElementById("list-todo").appendChild(li);
         });
     }
 
@@ -197,26 +226,26 @@ function loadTasks() {
 }
 
 
-// Move task between columns
-function moveTask(taskName, targetList) {//property.name ,taskList
-    let task = taskLists.todo.find(t => t.name === taskName) || taskLists.doing.find(t => t.name === taskName);
+/* Move task between columns
+function moveTask(taskName, targetList) {//property.name ,list-todo
+    let task = list-todos.todo.find(t => t.name === taskName) || list-todos.doing.find(t => t.name === taskName);
 
     if (targetList === 'todo') {
-        taskLists.todo = taskLists.todo.filter(t => t.name !== taskName);
-        taskLists.doing.push(task);
+        list-todos.todo = list-todos.todo.filter(t => t.name !== taskName);
+        list-todos.doing.push(task);
     } else if (targetList === 'doing') {
-        taskLists.doing = taskLists.doing.filter(t => t.name !== taskName);
-        taskLists.done.push(task);
+        list-todos.doing = list-todos.doing.filter(t => t.name !== taskName);
+        list-todos.done.push(task);
     }
 
     logActivity(`Moved task: ${taskName} to ${targetList}`);
-}
+}*/
 
 /* Remove task
 function removeTask(taskName) {
-    taskLists.todo = taskLists.todo.filter(t => t.name !== taskName);
-    taskLists.doing = taskLists.doing.filter(t => t.name !== taskName);
-    taskLists.done = taskLists.done.filter(t => t.name !== taskName);
+    list-todos.todo = list-todos.todo.filter(t => t.name !== taskName);
+    list-todos.doing = list-todos.doing.filter(t => t.name !== taskName);
+    list-todos.done = list-todos.done.filter(t => t.name !== taskName);
     logActivity(`Deleted task: ${taskName}`);
 }*/
 
