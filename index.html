@@ -49,6 +49,9 @@
                     <br>
                     <label>🔔 リマインダー時間:</label>
                     <input type="datetime-local" id="reminderTime">
+                    <br>
+                    <button class="add-btn">テキストで追加</button>
+                    <div class="error-msg">タスクを入力してください!</div>
                 </div>
                 <br>
 
@@ -57,7 +60,6 @@
                     <textarea id="voice-input" placeholder="入力された音声が表示されます"></textarea>
                 </div>
                 <br>
-                <button id="addTaskBtn" onclick="addTask()">✨ 追加</button>
             </div>
         </form>
     </div>
@@ -69,14 +71,16 @@
     <div id="#lists">
         <div class="list-container">
             <p>追加されたリストは、以下に表示されます：</p>
-
             <ul class="list-items">
-                <li>
-                    タスクタスク:詳細説明詳細説明
+
+                <li class="list-items" data-task-id="${task.id}">
+                    ${task.name} : ${task.note}
                     <br>
-                    期限は2024年12月6日です
-                    <br>
-                    <button class="deleteTaskBtn" onclick="">完了報告！</button>
+                    ${task.date ? `<div class="item-date">期日:${task.date}</div>`:''} 
+                    <div class="item-btn">
+                        <button class="btn complete-btn">完了報告！</button>
+                        <button class="btn delete-btn" data-task-id="${task.id}">削除する</button>
+                    </div>
                 </li>
             </ul>
         </div>
