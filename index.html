@@ -38,25 +38,34 @@
             <div class="input-container">
                 <p>新しいタスクを追加しましょう：</p>
                 <div class="text-input">
-                    <label>✏️ タスクの名前:</label>
-                    <input type="text" id="taskInput" placeholder="旅行の準備" autocomplete="off">
-                    <br>
-                    <label>📝 詳細説明:</label>
-                    <textarea id="taskDescription" placeholder="現金、モバイルバッテリー、着替え、etc..."></textarea>
-                    <br>
-                    <label>🕘 締め切り:</label>
-                    <input type="datetime-local" id="taskTime">
-                    <br>
-                    <label>🔔 リマインダー時間:</label>
-                    <input type="datetime-local" id="reminderTime">
-                    <br>
-                    <button class="add-btn">テキストで追加</button>
-                    <div class="error-msg">タスクを入力してください!</div>
+                    <div class ="input-box">
+                        <label>✏️ タスクの名前:</label>
+                        <input type="text" id="taskInput" placeholder="旅行の準備" autocomplete="off">    
+                    </div>
+                    <div class="input-box">
+                        <label>📝 詳細説明:</label>
+                        <textarea id="taskDescription" placeholder="現金、モバイルバッテリー、着替え、etc..."></textarea>
+                    </div>
+
+                    <div class="input-box">
+                        <label>🕘 締め切り:</label>
+                        <input type="datetime-local" id="taskTime">
+                    </div>
+
+                    <div class="input-box">
+                        <label>🔔 リマインダー時間:</label>
+                        <input type="datetime-local" id="reminderTime">
+                    </div>
+                    
                 </div>
+                <button class="add-btn">テキストで追加</button>
+                <div class="error-msg">タスクを入力してください!</div>
+
                 <br>
 
                 <div class="voice-recognize">
                     <img src="/img/microphone_mark.png" alt="マイク">
+                    <br>
                     <textarea id="voice-input" placeholder="入力された音声が表示されます"></textarea>
                 </div>
                 <br>

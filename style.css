@@ -5,8 +5,6 @@ html{
     background-color: antiquewhite;
 }
 
-
-
 a{
     text-decoration: none;
 }
@@ -15,6 +13,16 @@ img{
     max-width: 100%;
 }
 
+textarea {
+    background-color: rgb(109, 185, 92);
+    resize: auto;
+    max-width: 500px;
+    max-height: 180px;
+    min-width: 100px;
+    min-height: 50px;
+    width:500px;
+    height:150px;
+  }
 
 .page-header{
     display: flex;
@@ -83,6 +91,20 @@ img{
     color: #fff;
     margin: 10px;
     padding: 10px;
+
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    /* grid-template-rows / grid-template-columns の値 */
+    grid-template:200px 200px;
+    justify-content: space-around;
+}
+.input-box{
+    background-color: green;
+    display: grid;
+    color: #fff;
+    margin: 10px;
+    padding: 20px 20px 20px 20px;
 }
 .voice-recognize{
     background-color: limegreen;
