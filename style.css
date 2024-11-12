@@ -22,9 +22,7 @@ img{
     background-color: rgb(26, 171, 237);
 }
 .wrapper{
-    max-width: 1500px;
-    margin: 0 auto;
-    padding: 0 4%;
+    max-width: 1600px;
 }
 
 .title{
@@ -92,6 +90,12 @@ img{
     margin: 10px;
     padding: 10px;
 }
+.error-msg {
+    font-size: 12px;
+    font-weight: bold;
+    color: red;
+    display: none;
+  }
 
 
 
