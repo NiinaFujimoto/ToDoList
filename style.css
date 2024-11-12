@@ -24,6 +24,21 @@ textarea {
     height:150px;
   }
 
+::placeholder {
+    color: #000;
+}
+
+.btn {
+    color: #FFF;
+    font-weight: bold;
+    border: none;
+    border-radius: 3px;
+    width: 100px;
+    height: 50px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
 .page-header{
     display: flex;
     justify-content: space-around;
@@ -62,13 +77,14 @@ textarea {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 10px;
+    padding: 30px 2px;
     grid-template-rows: 200px;
 }
 
 .item{
     background-color: #0bd;
     color: #fff;
-    margin: 10px;
+    margin: 2px 50px;
     padding: 10px;
 }
 
@@ -106,6 +122,11 @@ textarea {
     margin: 10px;
     padding: 20px 20px 20px 20px;
 }
+.add-btn {
+    background: #3ca83c;
+    margin-top: 20px;
+}
+
 .voice-recognize{
     background-color: limegreen;
     color: #fff;
@@ -138,6 +159,10 @@ textarea {
     margin: 10px;
     padding: 10px;
 }
+.list-item{
+    background-color: #983f3f;
+}
+
 
 .complete-container{
     background-color: violet;
@@ -151,3 +176,10 @@ textarea {
 }
 
 
+.delete-btn {
+    background: #e95656;
+}
+
+.complete-btn {
+    background: #0881f1;
+}

@@ -61,7 +61,7 @@ inputForm.addEventListener('keyup', () => {
 //タスクを表示するためのHTMLタグを作成する
 const createTaskElement = (task) => {
     return `
-    <li class="list-items" data-task-id="${task.id}">
+    <li class="list-item" data-task-id="${task.id}">
         ${task.name} : ${task.note}
         <br>
         ${task.date ? `<div class="item-date">期日:${task.date}</div>`:''} 
@@ -69,7 +69,9 @@ const createTaskElement = (task) => {
             <button class="btn complete-btn">完了報告！</button>
             <button class="btn delete-btn" data-task-id="${task.id}">削除する</button>
         </div>
-    </li>`;
+    </li>
+    <br>
+    `;
 }
  
 //ローカルストレージにタスクを保存する
