@@ -44,7 +44,7 @@
                     </div>
                     <div class="input-box">
                         <label>📝 詳細説明:</label>
-                        <textarea id="taskDescription" placeholder="現金、モバイルバッテリー、着替え、etc..."></textarea>
+                        <textarea id="taskDescription" maxlength="1200" placeholder="1200文字まで記入できます"></textarea>
                     </div>
 
                     <div class="input-box">
@@ -81,16 +81,6 @@
         <div class="list-container">
             <p>追加されたリストは、以下に表示されます：</p>
             <ul class="list-items">
-
-                <li class="list-items" data-task-id="${task.id}">
-                    ${task.name} : ${task.note}
-                    <br>
-                    ${task.date ? `<div class="item-date">期日:${task.date}</div>`:''} 
-                    <div class="item-btn">
-                        <button class="btn complete-btn">完了報告！</button>
-                        <button class="btn delete-btn" data-task-id="${task.id}">削除する</button>
-                    </div>
-                </li>
             </ul>
         </div>
     </div>
