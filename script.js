@@ -3,7 +3,7 @@ const inputDate = document.getElementById('taskTime');
 const inputNote = document.getElementById('taskDescription');
 const addBtn = document.querySelector('.add-btn');
 const taskList = document.querySelector('.list-items');
-const compList = document.querySelector('complete-items');
+const compList = document.querySelector('.complete-items');
 
 //ページがロードされたら処理を実行する
 window.addEventListener('load', () => {
@@ -62,9 +62,11 @@ inputForm.addEventListener('keyup', () => {
 const createTaskElement = (task) => {
     return `
     <li class="list-item" data-task-id="${task.id}">
-        ${task.name} : ${task.note}
+        名前：${task.name}
         <br>
-        ${task.date ? `<div class="item-date">期日:${task.date}</div>`:''} 
+        説明：${task.note}
+        <br>
+        ${task.date ? `<div class="item-date">期日：${task.date}</div>`:''} 
         <div class="item-btn">
             <button class="btn complete-btn">完了報告！</button>
         </div>
@@ -140,9 +142,9 @@ const TaskListBtnEvent = () => {
             //ローカルストレージに保存されているタスクデータを取得する
             const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
             //削除するタスクのliタグのデータ属性(タスクid)を取得
-            const targetId = deleteTarget.closest('li').dataset.taskId;
+            const dTargetId = deleteTarget.closest('li').dataset.taskId;
             //tasksから削除するタスクを取り除く
-            const updatedTasks = tasks.filter(task => task.id !== parseInt(targetId));
+            const updatedTasks = tasks.filter(task => task.id !== parseInt(dTargetId));
             //ローカルストレージにupdatedTasksを保存する
             localStorage.setItem('tasks', JSON.stringify(updatedTasks));
             //taskListから削除するタスクを取り除く
