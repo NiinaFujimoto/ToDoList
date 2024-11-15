@@ -25,12 +25,15 @@ addBtn.addEventListener('click', () => {
     
     //タスクidを設定する
     let taskId = setTaskId();
+    let taskName = inputForm.value.trim();
+    let taskNote = inputNote.value.trim();
+    let taskDate = inputDate.value ? formattedDate(inputDate.value) : null;
     //タスクのデータのオブジェクトを作成する
     const task = {
         id: taskId,
-        name: inputForm.value.trim(),
-        note: inputNote.value.trim(),
-        date: inputDate.value ? formattedDate(inputDate.value) : null,
+        name: taskName,
+        note: taskNote,
+        date: taskDate,
     }
     //タスクリスト(ulタグ)にタスクを追加する 
     taskList.innerHTML += createTaskElement(task); 
@@ -74,6 +77,24 @@ const createTaskElement = (task) => {
     <br>
     `;
 }
+
+//完了タスクを表示するためのHTMLタグを作成
+const createcoTaskElement = (task) => {
+  return `
+  <li class="complete-item" data-task-id="${task.id}">
+        名前：${task.name}
+        <br>
+        説明：${task.note}
+        <br>
+        ${task.date ? `<div class="item-date">期日：${task.date}</div>`:''} 
+      <div class="item-btn">
+          <button class="btn delete-btn" data-task-id="${task.id}">削除する</button>
+      </div>
+  </li>
+  <br>
+  `;
+}
+
  
 //ローカルストレージにタスクを保存する
 const saveLocalStorage = (task) => { 
@@ -97,8 +118,14 @@ const displayTasks = () => {
   if(tasks.length !== 0) {
     //タスクを1つずつ取り出して処理をする
     tasks.forEach((task) => {
-      //taskList(ulタグ)にタスクを追加する
-      taskList.innerHTML += createTaskElement(task);
+      if(task.id <= 1000){
+        //taskList(ulタグ)にタスクを追加する
+        taskList.innerHTML += createTaskElement(task);
+      }else{
+        //taskList(ulタグ)にタスクを追加する
+        compList.innerHTML += createcoTaskElement(task);
+      }
+
     });
   }
 }
@@ -148,7 +175,7 @@ const TaskListBtnEvent = () => {
             //ローカルストレージにupdatedTasksを保存する
             localStorage.setItem('tasks', JSON.stringify(updatedTasks));
             //taskListから削除するタスクを取り除く
-            taskList.removeChild(deleteTarget.closest('li'));
+            compList.removeChild(deleteTarget.closest('li'));
         });
     });
   
@@ -157,9 +184,43 @@ const TaskListBtnEvent = () => {
         //完了ボタンをクリックすると処理を実行する
         compBtn.addEventListener('click', (e) => {
             //完了するタスクのliタグを取得
-            const compTarget = e.target.closest('li');
-            //compTargetにcompleteクラスがない場合は追加、ある場合は削除する
-            compTarget.classList.toggle('complete');
+            const compTarget = e.target.closest('.list-item');
+            //ローカルストレージに保存されているタスクデータを取得する
+            const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+            //削除するタスクのliタグのデータ属性(タスクid)を取得
+            const dTargetId = compTarget.closest('li').dataset.taskId;
+            //完了するタスクのliタグのデータ属性(タスクid)を取得
+            const cTargetId = compTarget.closest('li').dataset.taskId;
+
+
+            //タスクのデータのオブジェクトを作成する
+            let task = {
+              id: 'c'+cTargetId,
+              name: compTarget.closest('li').dataset.taskName,
+              note: compTarget.closest('li').dataset.taskNote,
+              date: compTarget.closest('li').dataset.taskDate,
+            }
+
+            console.log(compTarget.closest('li').dataset.taskId);
+            console.log(task.id);
+
+            //タスクリスト(ulタグ)にタスクを追加する 
+            compList.innerHTML += createcoTaskElement(task); 
+            //完了ボタン、削除ボタンのイベント
+            TaskListBtnEvent();
+            //ローカルストレージにタスクデータを保存する
+            saveLocalStorage(task);
+
+
+
+
+            //tasksから削除するタスクを取り除く
+            const updatedTasks = tasks.filter(task => task.id !== parseInt(dTargetId));
+
+            //ローカルストレージにupdatedTasksを保存する
+            localStorage.setItem('tasks', JSON.stringify(updatedTasks));
+            //taskListから削除するタスクを取り除く
+            taskList.removeChild(compTarget.closest('li'));
         });
     });
 }
