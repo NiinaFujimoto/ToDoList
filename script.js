@@ -5,6 +5,10 @@ const addBtn = document.querySelector('.add-btn');
 const taskList = document.querySelector('.list-items');
 const compList = document.querySelector('.complete-items');
 
+let Id = '';
+let taskName ='';
+
+
 //ページがロードされたら処理を実行する
 window.addEventListener('load', () => {
   displayTasks();
@@ -25,7 +29,7 @@ addBtn.addEventListener('click', () => {
     
     //タスクidを設定する
     let taskId = setTaskId();
-    let taskName = inputForm.value.trim();
+    taskName = inputForm.value.trim();
     let taskNote = inputNote.value.trim();
     let taskDate = inputDate.value ? formattedDate(inputDate.value) : null;
     //タスクのデータのオブジェクトを作成する
@@ -45,6 +49,7 @@ addBtn.addEventListener('click', () => {
     inputForm.value = '';
     inputNote.value = '';
     inputDate.value = '';
+    Id = task.id;
     console.log("Added");
 });
 
@@ -118,14 +123,15 @@ const displayTasks = () => {
   if(tasks.length !== 0) {
     //タスクを1つずつ取り出して処理をする
     tasks.forEach((task) => {
-      if(task.id <= 1000){
+
+      if (Id.match(/c/)) {
+        //Idにcを含む場合の処理
+          //compList(ulタグ)にタスクを追加する
+          compList.innerHTML += createcoTaskElement(task);
+        }else{
         //taskList(ulタグ)にタスクを追加する
         taskList.innerHTML += createTaskElement(task);
-      }else{
-        //taskList(ulタグ)にタスクを追加する
-        compList.innerHTML += createcoTaskElement(task);
-      }
-
+        }
     });
   }
 }
@@ -190,19 +196,20 @@ const TaskListBtnEvent = () => {
             //削除するタスクのliタグのデータ属性(タスクid)を取得
             const dTargetId = compTarget.closest('li').dataset.taskId;
             //完了するタスクのliタグのデータ属性(タスクid)を取得
-            const cTargetId = compTarget.closest('li').dataset.taskId;
-
+            const cTargetId = 'c'+ compTarget.closest('li').dataset.taskId;
 
             //タスクのデータのオブジェクトを作成する
             let task = {
-              id: 'c'+cTargetId,
+              id: cTargetId,
               name: compTarget.closest('li').dataset.taskName,
               note: compTarget.closest('li').dataset.taskNote,
               date: compTarget.closest('li').dataset.taskDate,
             }
 
-            console.log(compTarget.closest('li').dataset.taskId);
-            console.log(task.id);
+            console.log(compTarget.closest('li').dataset.taskName);
+
+            Id = task.id;
+
 
             //タスクリスト(ulタグ)にタスクを追加する 
             compList.innerHTML += createcoTaskElement(task); 
