@@ -3,7 +3,7 @@ const inputDate = document.getElementById('taskTime');
 const inputNote = document.getElementById('taskDescription');
 const addBtn = document.querySelector('.add-btn');
 const taskList = document.querySelector('.list-items');
-
+const compList = document.querySelector('complete-items');
 
 //ページがロードされたら処理を実行する
 window.addEventListener('load', () => {
@@ -58,7 +58,7 @@ inputForm.addEventListener('keyup', () => {
   }
 });
 
-//タスクを表示するためのHTMLタグを作成する
+//Todoタスクを表示するためのHTMLタグを作成する
 const createTaskElement = (task) => {
     return `
     <li class="list-item" data-task-id="${task.id}">
@@ -67,7 +67,6 @@ const createTaskElement = (task) => {
         ${task.date ? `<div class="item-date">期日:${task.date}</div>`:''} 
         <div class="item-btn">
             <button class="btn complete-btn">完了報告！</button>
-            <button class="btn delete-btn" data-task-id="${task.id}">削除する</button>
         </div>
     </li>
     <br>
@@ -87,8 +86,9 @@ const saveLocalStorage = (task) => {
 
 //ローカルストレージにタスクがある場合は表示する
 const displayTasks = () => {
-  //taskuList(ulタグ)をリセットする
+  //taskList(ulタグ)をリセットする
   taskList.innerHTML = '';
+  compList.innerHTML = '';
   //ローカルストレージに保存されているタスクデータを取得する
   const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
   //ローカルストレージにタスクのデータが1つ以上ある場合
@@ -136,7 +136,7 @@ const TaskListBtnEvent = () => {
         //削除ボタンをクリックすると処理を実行する
         deleteBtn.addEventListener('click', (e) => {
             //削除するタスクのliタグを取得
-            const deleteTarget = e.target.closest('.task-item');
+            const deleteTarget = e.target.closest('.complete-item');
             //ローカルストレージに保存されているタスクデータを取得する
             const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
             //削除するタスクのliタグのデータ属性(タスクid)を取得
@@ -161,5 +161,3 @@ const TaskListBtnEvent = () => {
         });
     });
 }
-
-
