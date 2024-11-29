@@ -2,9 +2,9 @@
 
 html{
     font-size: 100%;
-    background-color: antiquewhite;
     height: 100vh;
     width: 100vw;
+    background-color: #fff9d0;
 }
 
 a{
@@ -20,7 +20,7 @@ div{
 }
 
 textarea {
-    background-color: rgb(109, 185, 92);
+    background-color: #caf4ff;
     resize: auto;
     max-width: 500px;
     max-height: 180px;
@@ -90,18 +90,18 @@ textarea {
 
 
 .links{
+    background-color: #fff9d0;
     height: 85vh;
     scroll-snap-align: start;
     width: 100vw;
-    background-color: aqua;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     padding: 30px 2px;
 }
 
 .item{
-    background-color: #0bd;
-    color: #fff;
+    background-color: #a0deff;
+    color: #000;
     font-size: 2rem;
     margin: 3vh;
     padding: 10px;
@@ -120,13 +120,12 @@ textarea {
 }
 
 .input-container{
-    background-color: palegreen;
+    background-color: #fff9d0;
     padding: 10px;
 
 }
 .text-input{
-    background-color: darkgreen;
-    color: #fff;
+    background-color: #a0deff;
     margin: 10px;
     padding: 10px;
 
@@ -138,20 +137,17 @@ textarea {
     justify-content: space-between;
 }
 .input-box{
-    background-color: green;
     display: grid;
-    color: #fff;
     margin: 10px;
     padding: 20px 20px 20px 20px;
 }
 .add-btn {
-    background: #3ca83c;
+    background: #5ab2ff;
     margin-top: 20px;
 }
 
 .voice-recognize{
-    background-color: darkgreen;
-    color: #fff;
+    background-color: #a0deff;
     margin: 10px;
     padding: 10px;
 
@@ -162,9 +158,8 @@ textarea {
     grid-template:200px 200px;
 }
 .voice-box{
-    background-color: green;
     display: grid;
-    color: #fff;
+
     margin: 10px;
     padding: 20px 20px 20px 20px;
 }
@@ -185,7 +180,10 @@ textarea {
 
 
 
-  #lists {
+
+
+
+#lists {
     margin-top: 20vh;
     height: 85vh;
     width: 100vw;
@@ -193,7 +191,7 @@ textarea {
 }
 
 .list-container{
-    background-color: salmon;
+    background-color: #fff9d0;
     flex-direction: column;
     display: flex;
     grid-template-columns: 1fr 1fr 1fr;
@@ -202,12 +200,12 @@ textarea {
     padding: 10px;
 }
 .list-items{
-    background-color: crimson;
+    background-color: #a0deff;
     margin: 10px;
     padding: 10px;
 }
 .list-item{
-    background-color: #983f3f;
+    background-color: #caf4ff;
     text-align: justify;
     padding: 10px;
 }
@@ -220,7 +218,7 @@ textarea {
     scroll-snap-align: start;
 }
 .complete-container{
-    background-color: violet;
+    background-color: #fff9d0;
     flex-direction: column;
     display: flex;
     grid-template-columns: 1fr 1fr 1fr;
@@ -229,13 +227,13 @@ textarea {
     padding: 10px;
 }
 .complete-items{
-    background-color: darkviolet;
+    background-color: #a0deff;
     padding: 10px;
 }
 .complete-item{
     text-align: justify;
     padding: 10px;
-    background-color: #aeb5dc;
+    background-color: #caf4ff;
 }
 
 
