@@ -3,8 +3,8 @@
 html{
     font-size: 100%;
     background-color: antiquewhite;
-    height: 99vh;
-    width: 99vw;
+    height: 100vh;
+    width: 100vw;
 }
 
 a{
@@ -27,7 +27,7 @@ textarea {
     min-width: 100px;
     min-height: 50px;
     width:40vw;
-    height:20vh;
+    height:15vh;
   }
 
 ::placeholder {
@@ -53,13 +53,13 @@ textarea {
     justify-content: space-around;
     background-color: rgb(26, 171, 237);
     height: 10vh;
-    width: 99vw;
+    width: 100vw;
 }
 
 .all-container{
     overflow: auto;
     scroll-snap-type: y mandatory;
-    height: 100vh;
+    height: 87vh;
     width: 100%;
 }
 
@@ -90,9 +90,9 @@ textarea {
 
 
 .links{
-    height: 90vh;
+    height: 85vh;
     scroll-snap-align: start;
-    width: 99vw;
+    width: 100vw;
     background-color: aqua;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
@@ -114,8 +114,8 @@ textarea {
 
 
 #adding {
-    height: 90vh;
-    width: 99vw;
+    height: 85vh;
+    width: 100vw;
     scroll-snap-align: start;
 }
 
@@ -150,11 +150,31 @@ textarea {
 }
 
 .voice-recognize{
-    background-color: limegreen;
+    background-color: darkgreen;
     color: #fff;
     margin: 10px;
     padding: 10px;
+
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    /* grid-template-rows / grid-template-columns の値 */
+    grid-template:200px 200px;
 }
+.voice-box{
+    background-color: green;
+    display: grid;
+    color: #fff;
+    margin: 10px;
+    padding: 20px 20px 20px 20px;
+}
+.voice-box textarea{
+    max-width: 75vw;
+    width: 50vw;
+    max-height: 20vh;
+    height: 20vh;
+}
+
 .error-msg {
     font-size: 12px;
     font-weight: bold;
@@ -166,8 +186,9 @@ textarea {
 
 
   #lists {
-    height: 95vh;
-    width: 99vw;
+    margin-top: 20vh;
+    height: 85vh;
+    width: 100vw;
     scroll-snap-align: start;
 }
 
@@ -178,11 +199,8 @@ textarea {
     grid-template-columns: 1fr 1fr 1fr;
     gap: 10px;
     grid-template-rows: 200px;
-    margin: 10px;
     padding: 10px;
 }
-
-
 .list-items{
     background-color: crimson;
     margin: 10px;
@@ -196,18 +214,22 @@ textarea {
 
 
 #completes {
-    height: 90vh;
-    width: 99vw;
+    margin-top: 20vh;
+    height: 85vh;
+    width: 100vw;
     scroll-snap-align: start;
 }
 .complete-container{
     background-color: violet;
-    margin: 10px;
+    flex-direction: column;
+    display: flex;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+    grid-template-rows: 200px;
     padding: 10px;
 }
 .complete-items{
     background-color: darkviolet;
-    margin: 10px;
     padding: 10px;
 }
 .complete-item{
