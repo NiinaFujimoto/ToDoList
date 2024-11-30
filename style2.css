@@ -1,0 +1,280 @@
+@charset "utf-8";
+
+html{
+    font-size: 100%;
+    background-color: antiquewhite;
+    height: 100vh;
+    width: 100vw;
+}
+
+a{
+    text-decoration: none;
+}
+
+img{
+    max-width: 100%;
+}
+
+div{
+    display: grid;
+}
+
+textarea {
+    background-color: rgb(109, 185, 92);
+    resize: auto;
+    max-width: 500px;
+    max-height: 180px;
+    min-width: 100px;
+    min-height: 50px;
+    width:40vw;
+    height:15vh;
+  }
+
+::placeholder {
+    color: #000;
+}
+
+.btn {
+    color: #FFF;
+    font-weight: bold;
+    border: none;
+    border-radius: 3px;
+    width: 100px;
+    height: 50px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.page-header{
+    position: sticky;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: space-around;
+    background-color: rgb(26, 171, 237);
+    height: 10vh;
+    width: 100vw;
+}
+
+.all-container{
+    overflow: auto;
+    scroll-snap-type: y mandatory;
+    height: 87vh;
+    width: 100%;
+}
+
+
+
+.title{
+    width: 50vw;
+    margin-top: 14px;
+}
+
+.main-nav {
+    display: flex;
+    font-size: 1.25rem;
+    text-transform: uppercase;
+    margin-top: 34px;
+    list-style: none;
+}
+.main-nav li{
+    margin-left: 36px;
+}
+.main-nav a{
+    color: white;
+}
+.main-nav a:hover{
+    color: blue;
+}
+
+
+
+.links{
+    height: 85vh;
+    scroll-snap-align: start;
+    width: 100vw;
+    background-color: aqua;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    padding: 30px 2px;
+}
+
+.item{
+    background-color: #0bd;
+    color: #fff;
+    font-size: 2rem;
+    margin: 3vh;
+    padding: 10px;
+    height: 80vh;
+    width: 30vw;
+}
+
+
+
+
+
+#adding {
+    height: 85vh;
+    width: 100vw;
+    scroll-snap-align: start;
+}
+
+.input-container{
+    background-color: palegreen;
+    padding: 10px;
+
+}
+.text-input{
+    background-color: darkgreen;
+    color: #fff;
+    margin: 10px;
+    padding: 10px;
+
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    /* grid-template-rows / grid-template-columns の値 */
+    grid-template:200px 200px;
+    justify-content: space-between;
+}
+.input-box{
+    background-color: green;
+    display: grid;
+    color: #fff;
+    margin: 10px;
+    padding: 20px 20px 20px 20px;
+}
+.add-btn {
+    background: #3ca83c;
+    margin-top: 20px;
+}
+
+.voice-recognize{
+    background-color: darkgreen;
+    color: #fff;
+    margin: 10px;
+    padding: 10px;
+
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    /* grid-template-rows / grid-template-columns の値 */
+    grid-template:200px 200px;
+}
+.voice-box{
+    background-color: green;
+    display: grid;
+    color: #fff;
+    margin: 10px;
+    padding: 20px 20px 20px 20px;
+}
+.voice-box textarea{
+    max-width: 75vw;
+    width: 50vw;
+    max-height: 20vh;
+    height: 20vh;
+}
+
+.error-msg {
+    font-size: 12px;
+    font-weight: bold;
+    color: red;
+    display: none;
+  }
+
+
+
+  .split{
+    display: table;
+    width: 100%;
+}
+.split-item{
+    display: table-cell;
+    width: 50%;
+}
+.split-left{
+    position: relative;
+}
+.split-left__inner{
+    height: 100%;
+    width: 50%;
+}
+.split-right__inner{
+    height: 100%;
+    width: 50%;
+}
+
+
+
+
+
+#lists {
+    margin-top: 20vh;
+    height: 85vh;
+    width: 50vw;
+    scroll-snap-align: start;
+}
+
+.list-container{
+    background-color: salmon;
+    flex-direction: column;
+    display: flex;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+    grid-template-rows: 200px;
+    padding: 10px;
+}
+.list-items{
+    background-color: crimson;
+    margin: 10px;
+    padding: 10px;
+}
+.list-item{
+    background-color: #983f3f;
+    text-align: justify;
+    padding: 10px;
+}
+
+
+#completes {
+    margin-top: 20vh;
+    height: 85vh;
+    width: 50vw;
+    scroll-snap-align: start;
+}
+.complete-container{
+    background-color: violet;
+    flex-direction: column;
+    display: flex;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+    grid-template-rows: 200px;
+    padding: 10px;
+}
+.complete-items{
+    background-color: darkviolet;
+    padding: 10px;
+}
+.complete-item{
+    text-align: justify;
+    padding: 10px;
+    background-color: #aeb5dc;
+}
+
+
+
+.delete-btn {
+    background: #e95656;
+}
+
+.complete-btn {
+    background: #0881f1;
+}
+
+.footer{
+    position: sticky;
+    bottom: 0;
+    left: 0;
+    background-color: #fff;
+    color: #000;
+}

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title  >有言実行ToDo</title>
+    <link rel="icon" type="image/png" href="./img/icons8-チェックマーク-16.png">
+    <link rel="stylesheet" href="https://unpkg.com/destyle.css@1.0.5/destyle.css">
+    <link rel="stylesheet" href="style2.css">
+</head>
+<body>
+    <header class="page-header wrapper">
+        <h1 class="title">有言実行ToDoリスト</h1>
+        <nav>
+            <ul class="main-nav">
+                <li><a href="index.html">ホーム</a></li>
+                <li><a href="#adding">タスク追加</a></li>
+                <li><a href="#lists">リスト表示</a></li>
+                <li><a href="#completes">タスク完了報告</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="all-container">
+    <div class="links">
+        <div class="item"><a href="#adding">タスク追加</a></div>
+        <div class="item"><a href="#lists">リストの確認</a></div>
+        <div class="item"><a href="#completes">完了したタスク</a></div>
+    </div>
+
+
+
+    <div id="adding">
+    <!-- Task Input Section -->
+        <form>
+            <div class="input-container">
+                <p>新しいタスクを追加しましょう：</p>
+                <div class="text-input">
+                    <div class ="input-box">
+                        <label>✏️ タスクの名前:</label>
+                        <input type="text" id="taskInput" placeholder="旅行の準備" autocomplete="off">    
+                    </div>
+                    <div class="input-box">
+                        <label>📝 詳細説明:</label>
+                        <textarea id="taskDescription" maxlength="1200" placeholder="1200文字まで記入できます"></textarea>
+                    </div>
+
+                    <div class="input-box">
+                        <label>🕘 締め切り:</label>
+                        <input type="datetime-local" id="taskTime">
+                    </div>
+
+                    <div class="input-box">
+                        <label>🔔 リマインダー時間:</label>
+                        <input type="datetime-local" id="reminderTime">
+                    </div>
+                    
+                </div>
+                <button class="add-btn">テキストで追加</button>
+                <div class="error-msg">タスクを入力してください!</div>
+
+                <br>
+
+                <div class="voice-recognize">
+                    <div class="voice-box">
+                        <img src="./img/microphone_mark.png" alt="マイク" width="150px" height="150px">
+                    </div>
+                    <div class="voice-box">
+                        <textarea id="voice-input" placeholder="入力された音声が表示されます"></textarea>
+                    </div>
+                </div>
+                <br>
+            </div>
+        </form>
+    </div>
+
+
+
+    <!-- Board with ToDo, Doing, Done -->
+
+
+    <div class="split">
+        <div class="split-item split-left">
+            <div class="split-left__inner">
+                <div id="lists">
+                    <div class="list-container">
+                        <p>追加されたリストは、以下に表示されます：</p>
+                        <ul class="list-items">
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!--split-left__inner-->
+        </div>
+        <!--split-item split-left-->
+        <div class="split-item split-right">
+            <div class="split-right__inner">
+                <div id="completes">
+                    <div class="complete-container">
+                        <p>タスクが完了したら、報告しましょう：</p>
+                        <ul class="complete-items">
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!--split-right__inner-->
+        </div>
+        <!--split-item split-right-->
+    </div>
+    <!--split-->
+
+    </div>
+
+    <script src="script.js"></script>
+
+    <footer class="footer">
+        <a target="_blank" href="https://icons8.com/icon/gWpFZsHoozrx/done">チェックマーク</a> アイコン by <a target="_blank" href="https://icons8.com">Icons8</a>
+    </footer>
+
+</body>
+</html>
